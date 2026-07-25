@@ -1,0 +1,22 @@
+INSTALL SONAME 'json_extra';
+SELECT JSON_DIFF('{"a":1}', '{"a":2,"b":true}');
+JSON_DIFF('{"a":1}', '{"a":2,"b":true}')
+[{"op":"replace","path":"/a","value":2},{"op":"add","path":"/b","value":true}]
+SELECT JSON_PATCH('{"a":1}', '[{"op":"replace","path":"/a","value":2}]');
+JSON_PATCH('{"a":1}', '[{"op":"replace","path":"/a","value":2}]')
+{"a":2}
+SELECT JSON_PATCH('["a","b"]', '[{"op":"add","path":"/1","value":"x"}]');
+JSON_PATCH('["a","b"]', '[{"op":"add","path":"/1","value":"x"}]')
+["a","x","b"]
+SELECT JSON_PATCH('{"a/b":{"~x":1}}',
+'[{"op":"replace","path":"/a~1b/~0x","value":2}]');
+JSON_PATCH('{"a/b":{"~x":1}}',
+'[{"op":"replace","path":"/a~1b/~0x","value":2}]')
+{"a/b":{"~x":2}}
+SELECT JSON_PATCH('{"a":1}', '[{"op":"test","path":"/a","value":2}]') IS NULL;
+JSON_PATCH('{"a":1}', '[{"op":"test","path":"/a","value":2}]') IS NULL
+1
+SELECT JSON_PATCH(NULL, '[]') IS NULL;
+JSON_PATCH(NULL, '[]') IS NULL
+1
+UNINSTALL SONAME 'json_extra';
