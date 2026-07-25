@@ -1,5 +1,7 @@
 # mariadb-plugin-json-extra
 
+![mariabd-plugin-json-extra](logo/json_extra.png)
+
 `json_extra` is a MariaDB function plugin implementing JSON Patch
 ([RFC 6902](https://www.rfc-editor.org/rfc/rfc6902)) and JSON Pointer
 ([RFC 6901](https://www.rfc-editor.org/rfc/rfc6901)).
