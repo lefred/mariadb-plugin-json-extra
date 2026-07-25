@@ -142,7 +142,7 @@ closest native equivalents.
 |---|---|---|---|
 | Generate an RFC 6902 patch between two documents | `JSON_DIFF(source, target)` | Not available | Not available |
 | Apply an RFC 6902 patch (`add`/`remove`/`replace`/`move`/`copy`/`test`) | `JSON_PATCH(document, patch)` | Not available | Not available |
-| RFC 7396 JSON Merge Patch (recursive merge, `null` deletes a key) | Not part of this plugin — MariaDB already has `JSON_MERGE_PATCH(target, patch)` natively (server built-in, since MDEV-13992) | `JSON_MERGE_PATCH(target, patch)` | No dedicated function; approximated with `target \|\| patch` on `jsonb`, but `\|\|` only merges top-level keys and cannot delete a key with `null` |
+| [RFC 7396](https://www.rfc-editor.org/rfc/rfc7396) JSON Merge Patch (recursive merge, `null` deletes a key) | Not part of this plugin — MariaDB already has `JSON_MERGE_PATCH(target, patch)` natively (server built-in, since [MDEV-13992](https://jira.mariadb.org/browse/MDEV-13992)) | `JSON_MERGE_PATCH(target, patch)` | No dedicated function; approximated with `target \|\| patch` on `jsonb`, but `\|\|` only merges top-level keys and cannot delete a key with `null` |
 | Set/replace a value at a path | via `JSON_PATCH` `replace`/`add` | `JSON_SET(doc, path, val)`, `JSON_REPLACE(doc, path, val)` | `jsonb_set(target, path, new_value)` |
 | Insert only if the path doesn't already exist | via `JSON_PATCH` `add` (object) semantics differ: always overwrites | `JSON_INSERT(doc, path, val)` | `jsonb_set(target, path, new_value, false)` (`create_missing := false` for the inverse) |
 | Remove a value at a path | via `JSON_PATCH` `remove` | `JSON_REMOVE(doc, path)` | `target #- path` operator, or `jsonb_delete` |
