@@ -93,8 +93,8 @@ static Plugin_function descriptor_json_patch(&create_json_patch);
 
 #define JSON_EXTRA_PLUGIN(descriptor, name, description) \
   { MariaDB_FUNCTION_PLUGIN, descriptor, name, "lefred", \
-    description, PLUGIN_LICENSE_GPL, 0, 0, 0x0100, nullptr, nullptr, "1.0", \
-    MariaDB_PLUGIN_MATURITY_EXPERIMENTAL }
+    description, PLUGIN_LICENSE_GPL, 0, 0, 0x0100, nullptr, nullptr, "0.2.0", \
+    MariaDB_PLUGIN_MATURITY_BETA }
 
 maria_declare_plugin(json_extra)
   JSON_EXTRA_PLUGIN(&descriptor_json_diff, "json_diff",
